@@ -70,5 +70,5 @@ test('Form with submit with name correct', () => {
     f.input('name')
     f.input('job', { as: 'textarea' })
     f.submit('Wow')
-}).toString()).toBe(html)
+  }).toString()).toBe(html)
 })
