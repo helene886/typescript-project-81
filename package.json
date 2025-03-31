@@ -2,10 +2,9 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/helene886/typescript-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/helene886/typescript-project-81/actions)",
-  "main": "index.js",
+  "main": "HexletCode.js",
   "type": "module",
   "scripts": {
-    "exec": "npx tsx ./src/index.ts",
     "lint": "npx eslint .",
     "build": "tsc --project ./tsconfig.json",
     "test": "vitest",
