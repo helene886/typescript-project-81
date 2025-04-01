@@ -26,6 +26,7 @@ export class Form extends Tag {
           content = this.template[name] as string
           tagAttributes.cols = tagAttributes.cols ?? 20
           tagAttributes.rows = tagAttributes.rows ?? 40
+          tagAttributes.name = name
         }
       }
       else {
@@ -39,7 +40,7 @@ export class Form extends Tag {
       tagAttributes.type = 'text'
       tagAttributes.value = this.template[name]
     }
-    resultingTagAttributes = Object.fromEntries(Object.entries(resultingTagAttributes).concat(Object.entries(tagAttributes)))
+    resultingTagAttributes = tagAttributes.name === undefined ? Object.fromEntries(Object.entries(resultingTagAttributes).concat(Object.entries(tagAttributes))) : tagAttributes
     this.tagParts.middle += new Tag('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1)).toString()
     this.tagParts.middle += new Tag(tagName, resultingTagAttributes, content).toString()
   }
