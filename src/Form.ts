@@ -17,10 +17,10 @@ export class Form extends Tag {
     let tagAttributes: Record<string, unknown> = {}
     let content = ''
     if (attributes !== undefined) {
-      tagAttributes = attributes
       const entries = Object.entries(attributes)
       const asAttribute = entries.find(e => e[0] == 'as')
       if (asAttribute !== undefined) {
+        tagAttributes = Object.fromEntries(entries.filter(([key]) => key != 'as'))
         tagName = asAttribute[1] as string
         if (tagName == 'textarea') {
           content = this.template[name] as string
@@ -29,6 +29,7 @@ export class Form extends Tag {
         }
       }
       else {
+        tagAttributes = attributes
         tagAttributes.type = 'text'
         tagAttributes.value = this.template[name]
       }
