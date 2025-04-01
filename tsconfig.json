@@ -9,9 +9,9 @@
     "outDir": "./dist",
     "moduleResolution": "bundler",
     "module": "preserve",
-    "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
-    "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
-    "allowImportingTsExtensions": true,
+    "declaration": false,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "emitDeclarationOnly": false,                      /* Only output d.ts files and not JavaScript files. */
+    "allowImportingTsExtensions": false,
     "esModuleInterop": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false
