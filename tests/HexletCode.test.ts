@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 import fs from 'fs'
-import { HexletCode } from '../src/HexletCode'
 import path from 'path'
+import HexletCode from '../src/HexletCode'
 
 function getFixture(filename: string): string {
   return fs.readFileSync(path.join(__dirname.replace('tests', '__fixtures__'), filename), 'utf-8')
@@ -10,13 +10,13 @@ function getFixture(filename: string): string {
 test('Form with just template correct', () => {
   const template = { name: 'rob', job: 'hexlet', gender: 'm' }
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  expect(HexletCode.formFor(template, {}, (f) => {}).toString()).toBe('<form action="#" method="post"></form>')
+  expect(HexletCode.formFor(template, {}, (f) => {})).toBe('<form action="#" method="post"></form>')
 })
 
 test('Form with template and action correct', () => {
   const template = { name: 'rob', job: 'hexlet', gender: 'm' }
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  expect(HexletCode.formFor(template, { url: '/users' }, (f) => {}).toString()).toBe('<form action="/users" method="post"></form>')
+  expect(HexletCode.formFor(template, { url: '/users' }, (f) => {})).toBe('<form action="/users" method="post"></form>')
 })
 
 test('Form with simple input and textarea input correct', () => {
@@ -25,7 +25,7 @@ test('Form with simple input and textarea input correct', () => {
   expect(HexletCode.formFor(template, { method: 'post' }, (f) => {
     f.input('name')
     f.input('job', { as: 'textarea' })
-  }).toString()).toBe(html)
+  })).toBe(html)
 })
 
 test('Form with two simple inputs with and without non-textarea attributes correct', () => {
@@ -34,14 +34,14 @@ test('Form with two simple inputs with and without non-textarea attributes corre
   expect(HexletCode.formFor(template, {}, (f) => {
     f.input('name', { class: 'user-input' })
     f.input('job')
-  }).toString()).toBe(html)
+  })).toBe(html)
 })
 
 test('Form with with redefined fields correct', () => {
   const template = { name: 'rob', job: 'hexlet', gender: 'm' }
   const html = getFixture('redefinedFields.html')
   expect(HexletCode.formFor(template, { url: '#' }, f =>
-    f.input('job', { as: 'textarea', rows: 50, cols: 50 })).toString()).toBe(html)
+    f.input('job', { as: 'textarea', rows: 50, cols: 50 }))).toBe(html)
 })
 
 test('Form throws error on input for a missing field', () => {
@@ -60,7 +60,7 @@ test('Form with labels for input and submit correct', () => {
     f.input('name')
     f.input('job', { as: 'textarea' })
     f.submit()
-  }).toString()).toBe(html)
+  })).toBe(html)
 })
 
 test('Form with submit with name correct', () => {
@@ -70,5 +70,5 @@ test('Form with submit with name correct', () => {
     f.input('name')
     f.input('job', { as: 'textarea' })
     f.submit('Wow')
-  }).toString()).toBe(html)
+  })).toBe(html)
 })
