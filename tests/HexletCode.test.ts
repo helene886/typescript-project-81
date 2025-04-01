@@ -10,13 +10,13 @@ function getFixture(filename: string): string {
 test('Form with just template correct', () => {
   const template = { name: 'rob', job: 'hexlet', gender: 'm' }
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  expect(HexletCode.formFor(template, {}, (f) => {})).toBe('<form action="#" method="post"></form>')
+  expect(HexletCode.formFor(template, {}, (f) => {})).toBe('<form method="post" action="#"></form>')
 })
 
 test('Form with template and action correct', () => {
   const template = { name: 'rob', job: 'hexlet', gender: 'm' }
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  expect(HexletCode.formFor(template, { url: '/users' }, (f) => {})).toBe('<form action="/users" method="post"></form>')
+  expect(HexletCode.formFor(template, { url: '/users' }, (f) => {})).toBe('<form method="post" action="/users"></form>')
 })
 
 test('Form with simple input and textarea input correct', () => {

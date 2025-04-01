@@ -3,9 +3,8 @@ import { Tag } from './Tag'
 export class Form extends Tag {
   constructor(private template: Record<string, unknown>, private action: Record<string, unknown>) {
     const entries = Object.entries(action)
-    let attributes: Record<string, unknown> = {}
-    attributes = entries.length > 0 && !(entries.length == 1 && action.method == 'post') ? { action: entries[0][1] } : { action: '#' }
-    attributes.method = 'post'
+    const attributes: Record<string, unknown> = { method: 'post' }
+    attributes.action = entries.length > 0 && !(entries.length == 1 && action.method == 'post') ? entries[0][1] : '#'
     super('form', attributes)
   }
 
