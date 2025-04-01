@@ -14,6 +14,7 @@ export class Form extends Tag {
     }
     let tagName = 'input'
     let tagAttributes: Record<string, unknown> = {}
+    let resultingTagAttributes: Record<string, unknown> = { name: name }
     let content = ''
     if (attributes !== undefined) {
       const entries = Object.entries(attributes)
@@ -31,15 +32,16 @@ export class Form extends Tag {
         tagAttributes = attributes
         tagAttributes.type = 'text'
         tagAttributes.value = this.template[name]
+        tagAttributes = Object.fromEntries(Object.entries(tagAttributes).concat(entries))
       }
     }
     else {
       tagAttributes.type = 'text'
       tagAttributes.value = this.template[name]
     }
-    tagAttributes.name = name
+    resultingTagAttributes = Object.fromEntries(Object.entries(resultingTagAttributes).concat(Object.entries(tagAttributes)))
     this.tagParts.middle += new Tag('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1)).toString()
-    this.tagParts.middle += new Tag(tagName, tagAttributes, content).toString()
+    this.tagParts.middle += new Tag(tagName, resultingTagAttributes, content).toString()
   }
 
   public submit(value?: string) {
