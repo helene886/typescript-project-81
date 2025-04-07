@@ -1,7 +1,7 @@
 export class Tag {
   private static pairedTags = ['div', 'label', 'form', 'textarea', 'label']
 
-  constructor(protected name: string, protected attributes?: Record<string, unknown>, protected content?: string) {
+  constructor(protected name: string, protected attributes?: Record<string, string | number>, protected content?: string) {
     let attrs = ''
     if (this.attributes !== undefined) {
       const entries = Object.entries(this.attributes)
