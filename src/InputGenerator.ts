@@ -1,7 +1,7 @@
-import { IInputAttributes } from './IInputAttributes'
-import { InputTag } from './InputTag'
-import { ITextareaAttributes } from './ITextareaAttributes'
-import { TextareaTag } from './TextareaTag'
+import { IInputAttributes } from './attributes/IInputAttributes'
+import { InputTag } from './tags/InputTag'
+import { ITextareaAttributes } from './attributes/ITextareaAttributes'
+import { TextareaTag } from './tags/TextareaTag'
 
 export class InputGenerator {
   public static generateInput(templateFieldName: string, templateFieldValue: string, attributes?: IInputAttributes | ITextareaAttributes): InputTag | TextareaTag {

@@ -1,4 +1,4 @@
-import { FormTag } from './FormTag'
+import { FormTag } from './tags/FormTag'
 
 export default class HexletCode {
   public static formFor(template: Record<string, string>, action: Record<string, string>, func: (param: FormTag) => void): string {

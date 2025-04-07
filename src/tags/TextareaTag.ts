@@ -1,5 +1,5 @@
-import { ITextareaAttributes } from './ITextareaAttributes'
-import { ITextareaOutputAttributes } from './ITextareaOutputAttributes'
+import { ITextareaAttributes } from '../attributes/ITextareaAttributes'
+import { ITextareaOutputAttributes } from '../attributes/ITextareaOutputAttributes'
 import { Tag } from './Tag'
 
 export class TextareaTag extends Tag {
