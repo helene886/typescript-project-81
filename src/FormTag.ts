@@ -3,7 +3,7 @@ import { InputGenerator } from './InputGenerator'
 import { ITextareaAttributes } from './ITextareaAttributes'
 import { Tag } from './Tag'
 
-export class Form extends Tag {
+export class FormTag extends Tag {
   constructor(private template: Record<string, string>, action: Record<string, string>) {
     const entries = Object.entries(action)
     const attributes: Record<string, string> = { method: 'post' }
