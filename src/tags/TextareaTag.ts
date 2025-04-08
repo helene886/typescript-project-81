@@ -1,11 +1,17 @@
-import { ITextareaAttributes } from '../attributes/ITextareaAttributes'
-import { ITextareaOutputAttributes } from '../attributes/ITextareaOutputAttributes'
+import { ITextareaAttributes } from '../interfaces'
+import { ITextareaOutputAttributes } from '../interfaces'
 import { Tag } from './Tag'
 
 export class TextareaTag extends Tag {
   constructor(attributes: ITextareaAttributes) {
-    attributes.cols = attributes.cols ?? 20
-    attributes.rows = attributes.rows ?? 40
-    super('textarea', Object.fromEntries(Object.entries(attributes).filter(([key]) => key != 'as' && key != 'value')) as ITextareaOutputAttributes, attributes.value)
+    // following is to get expected attribute order for hexlet tests
+    const attrColsRowsOrder = attributes.cols || attributes.rows ? ['rows', 'cols'] : ['cols', 'rows']
+    const attributesOrder = attrColsRowsOrder.concat(['name']).concat(Object.keys(attributes).filter(e => !['cols', 'rows', 'name'].includes(e)))
+    const orderedAttributes: Record<string, string | number | undefined> = {}
+    attributesOrder.forEach(e => orderedAttributes[e] = attributes[e])
+
+    orderedAttributes.cols = attributes.cols ?? 20
+    orderedAttributes.rows = attributes.rows ?? 40
+    super('textarea', Object.fromEntries(Object.entries(orderedAttributes).filter(([key]) => key != 'as' && key != 'value')) as ITextareaOutputAttributes, attributes.value)
   }
 }

@@ -1,6 +1,5 @@
-import { IInputAttributes } from '../attributes/IInputAttributes'
+import { IInputAttributes, ITextareaAttributes } from '../interfaces'
 import { InputGenerator } from '../InputGenerator'
-import { ITextareaAttributes } from '../attributes/ITextareaAttributes'
 import { Tag } from './Tag'
 
 export class FormTag extends Tag {

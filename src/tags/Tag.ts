@@ -1,5 +1,5 @@
 export class Tag {
-  private static pairedTags = ['div', 'label', 'form', 'textarea', 'label']
+  private static singleTags = ['img', 'br', 'input']
 
   constructor(protected name: string, protected attributes?: Record<string, string | number>, protected content?: string) {
     let attrs = ''
@@ -10,8 +10,8 @@ export class Tag {
       }
     }
     this.tagParts.opening = `<${this.name}${attrs}>`
-    this.tagParts.middle = Tag.pairedTags.includes(this.name) && this.content !== undefined ? this.content : ''
-    this.tagParts.closing = Tag.pairedTags.includes(this.name) ? `</${this.name}>` : ''
+    this.tagParts.middle = !Tag.singleTags.includes(this.name) && this.content !== undefined ? this.content : ''
+    this.tagParts.closing = !Tag.singleTags.includes(this.name) ? `</${this.name}>` : ''
   }
 
   protected tagParts = { opening: '', middle: '', closing: '' }

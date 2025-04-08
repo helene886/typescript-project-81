@@ -1,4 +1,4 @@
-import { IInputAttributes } from '../attributes/IInputAttributes'
+import { IInputAttributes } from '../interfaces'
 import { Tag } from './Tag'
 
 export class InputTag extends Tag {
