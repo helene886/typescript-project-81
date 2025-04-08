@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "Library for generating forms.",
-  "main": "dist/src/HexletCode.js",
+  "main": "src/HexletCode.ts",
   "type": "module",
   "scripts": {
     "lint": "npx eslint .",
