@@ -9,13 +9,10 @@ export class InputGenerator {
       attributes.name = templateFieldName
       return new TextareaTag(attributes as ITextareaAttributes)
     }
-    // following is to get expected attribute order for hexlet tests
-    let attrs: Record<string, string | number | undefined> = { name: templateFieldName }
-    if (attributes !== undefined) {
-      attrs = Object.fromEntries(Object.entries(attrs).concat(Object.entries(attributes)))
-    }
-    (attrs as IInputAttributes).type = 'text';
-    (attrs as IInputAttributes).value = templateFieldValue
-    return new InputTag(attrs as IInputAttributes)
+    attributes ??= {}
+    attributes.name = templateFieldName
+    attributes.type = 'text'
+    attributes.value = templateFieldValue
+    return new InputTag(attributes as IInputAttributes)
   }
 }
