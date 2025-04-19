@@ -14,15 +14,15 @@ export class Form extends RenderableObject {
     if (!Object.keys(this.template).includes(name)) {
       throw new Error(`Field '${name}' does not exist in the template.`)
     }
-    const labelTag = new RenderableObject('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1))
-    const tag = InputGenerator.generateInput(name, this.template[name], attributes)
+    const label = new RenderableObject('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1))
+    const input = InputGenerator.generateInput(name, this.template[name], attributes)
     this.content ??= [];
-    (this.content as RenderableObject[]).push(...[labelTag, tag])
+    (this.content as RenderableObject[]).push(...[label, input])
   }
 
   public submit(value?: string) {
-    const tag = new RenderableObject('input', { type: 'submit', value: value ?? 'Save' })
+    const input = new RenderableObject('input', { type: 'submit', value: value ?? 'Save' })
     this.content ??= [];
-    (this.content as RenderableObject[]).push(tag)
+    (this.content as RenderableObject[]).push(input)
   }
 }

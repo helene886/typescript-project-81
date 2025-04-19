@@ -1,7 +1,7 @@
 import { RenderableObject } from './RenderableObjects/RenderableObject'
 
 export class Renderer {
-  public static renderTag(objectToRender: RenderableObject, format = 'html'): string {
+  public static render(objectToRender: RenderableObject, format = 'html'): string {
     let result = ''
     if (format === 'html') {
       const singleTags: readonly string[] = ['img', 'br', 'input']
@@ -14,7 +14,7 @@ export class Renderer {
       }
       const tagParts = { opening: '', middle: '', closing: '' }
       tagParts.opening = `<${objectToRender.name}${attrs}>`
-      tagParts.middle = singleTags.includes(objectToRender.name) || objectToRender.content === undefined ? '' : typeof objectToRender.content == 'string' ? objectToRender.content : objectToRender.content.map(e => Renderer.renderTag(e)).join('')
+      tagParts.middle = singleTags.includes(objectToRender.name) || objectToRender.content === undefined ? '' : typeof objectToRender.content == 'string' ? objectToRender.content : objectToRender.content.map(e => Renderer.render(e)).join('')
       tagParts.closing = !singleTags.includes(objectToRender.name) ? `</${objectToRender.name}>` : ''
       result = tagParts.opening + tagParts.middle + tagParts.closing
     }
