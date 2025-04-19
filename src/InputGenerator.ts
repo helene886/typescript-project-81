@@ -1,18 +1,18 @@
 import { IInputAttributes, ITextareaAttributes } from './interfaces'
-import { InputTag } from './tags/InputTag'
-import { TextareaTag } from './tags/TextareaTag'
+import { Input } from './RenderableObjects/Input'
+import { Textarea } from './RenderableObjects/Textarea'
 
 export class InputGenerator {
-  public static generateInput(templateFieldName: string, templateFieldValue: string, attributes?: IInputAttributes | ITextareaAttributes): InputTag | TextareaTag {
+  public static generateInput(templateFieldName: string, templateFieldValue: string, attributes?: IInputAttributes | ITextareaAttributes): Input | Textarea {
     if (attributes?.as === 'textarea') {
       attributes.value = templateFieldValue
       attributes.name = templateFieldName
-      return new TextareaTag(attributes as ITextareaAttributes)
+      return new Textarea(attributes as ITextareaAttributes)
     }
     attributes ??= {}
     attributes.name = templateFieldName
     attributes.type = 'text'
     attributes.value = templateFieldValue
-    return new InputTag(attributes as IInputAttributes)
+    return new Input(attributes as IInputAttributes)
   }
 }

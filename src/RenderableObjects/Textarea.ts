@@ -1,8 +1,8 @@
 import { ITextareaAttributes } from '../interfaces'
 import { ITextareaOutputAttributes } from '../interfaces'
-import { Tag } from './Tag'
+import { RenderableObject } from './RenderableObject'
 
-export class TextareaTag extends Tag {
+export class Textarea extends RenderableObject {
   constructor(attributes: ITextareaAttributes) {
     // following is to get expected attribute order for hexlet tests
     const attrColsRowsOrder = attributes.cols || attributes.rows ? ['rows', 'cols'] : ['cols', 'rows']

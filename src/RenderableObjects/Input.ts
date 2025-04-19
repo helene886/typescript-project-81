@@ -1,7 +1,7 @@
 import { IInputAttributes } from '../interfaces'
-import { Tag } from './Tag'
+import { RenderableObject } from './RenderableObject'
 
-export class InputTag extends Tag {
+export class Input extends RenderableObject {
   constructor(attributes: IInputAttributes) {
     // following is to get expected attribute order for hexlet tests
     let attrs: Record<string, string | number | undefined> = { name: attributes.name }

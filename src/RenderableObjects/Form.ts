@@ -1,8 +1,8 @@
 import { IInputAttributes, ITextareaAttributes } from '../interfaces'
 import { InputGenerator } from '../InputGenerator'
-import { Tag } from './Tag'
+import { RenderableObject } from './RenderableObject'
 
-export class FormTag extends Tag {
+export class Form extends RenderableObject {
   constructor(private template: Record<string, string>, action: Record<string, string>) {
     const entries = Object.entries(action)
     const attributes: Record<string, string> = { method: 'post' }
@@ -14,15 +14,15 @@ export class FormTag extends Tag {
     if (!Object.keys(this.template).includes(name)) {
       throw new Error(`Field '${name}' does not exist in the template.`)
     }
-    const labelTag = new Tag('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1))
+    const labelTag = new RenderableObject('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1))
     const tag = InputGenerator.generateInput(name, this.template[name], attributes)
     this.content ??= [];
-    (this.content as Tag[]).push(...[labelTag, tag])
+    (this.content as RenderableObject[]).push(...[labelTag, tag])
   }
 
   public submit(value?: string) {
-    const tag = new Tag('input', { type: 'submit', value: value ?? 'Save' })
+    const tag = new RenderableObject('input', { type: 'submit', value: value ?? 'Save' })
     this.content ??= [];
-    (this.content as Tag[]).push(tag)
+    (this.content as RenderableObject[]).push(tag)
   }
 }
