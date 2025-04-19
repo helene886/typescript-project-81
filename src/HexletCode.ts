@@ -1,9 +1,10 @@
+import { TagRenderer } from './TagRenderer'
 import { FormTag } from './tags/FormTag'
 
 export default class HexletCode {
   public static formFor(template: Record<string, string>, action: Record<string, string>, func: (param: FormTag) => void): string {
     const formTag = new FormTag(template, action)
     func(formTag)
-    return formTag.toString()
+    return TagRenderer.renderTag(formTag)
   }
 }

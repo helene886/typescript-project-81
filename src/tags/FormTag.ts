@@ -14,11 +14,15 @@ export class FormTag extends Tag {
     if (!Object.keys(this.template).includes(name)) {
       throw new Error(`Field '${name}' does not exist in the template.`)
     }
-    this.tagParts.middle += new Tag('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1)).toString()
-    this.tagParts.middle += InputGenerator.generateInput(name, this.template[name], attributes).toString()
+    const labelTag = new Tag('label', { for: name }, name[0].toUpperCase() + name.toLowerCase().slice(1))
+    const tag = InputGenerator.generateInput(name, this.template[name], attributes)
+    this.content ??= [];
+    (this.content as Tag[]).push(...[labelTag, tag])
   }
 
   public submit(value?: string) {
-    this.tagParts.middle += new Tag('input', { type: 'submit', value: value ?? 'Save' }).toString()
+    const tag = new Tag('input', { type: 'submit', value: value ?? 'Save' })
+    this.content ??= [];
+    (this.content as Tag[]).push(tag)
   }
 }
