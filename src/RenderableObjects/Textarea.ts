@@ -1,8 +1,11 @@
-import { ITextareaAttributes } from '../interfaces'
+import { IRenderableObject, ITextareaAttributes } from '../interfaces'
 import { ITextareaOutputAttributes } from '../interfaces'
-import { RenderableObject } from './RenderableObject'
 
-export class Textarea extends RenderableObject {
+export class Textarea implements IRenderableObject {
+  public name: string
+  public attributes?: Record<string, string | number> | undefined
+  public content?: string | IRenderableObject[] | undefined
+
   constructor(attributes: ITextareaAttributes) {
     // following is to get expected attribute order for hexlet tests
     const attrColsRowsOrder = attributes.cols || attributes.rows ? ['rows', 'cols'] : ['cols', 'rows']
@@ -12,6 +15,9 @@ export class Textarea extends RenderableObject {
 
     orderedAttributes.cols = attributes.cols ?? 20
     orderedAttributes.rows = attributes.rows ?? 40
-    super('textarea', Object.fromEntries(Object.entries(orderedAttributes).filter(([key]) => key != 'as' && key != 'value')) as ITextareaOutputAttributes, attributes.value)
+
+    this.name = 'textarea'
+    this.attributes = Object.fromEntries(Object.entries(orderedAttributes).filter(([key]) => key != 'as' && key != 'value')) as ITextareaOutputAttributes
+    this.content = attributes.value
   }
 }

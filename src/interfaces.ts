@@ -17,3 +17,9 @@ export interface ITextareaOutputAttributes extends Record<string, string | numbe
   cols: number
   name: string
 }
+
+export interface IRenderableObject {
+  name: string
+  attributes?: Record<string, string | number>
+  content?: string | IRenderableObject[]
+}
