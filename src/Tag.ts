@@ -2,22 +2,13 @@ import { IRenderableObject } from './interfaces'
 
 export class Tag {
   private static singleTags = ['img', 'br', 'input']
-  private tagParts = { opening: '', middle: '', closing: '' }
 
-  constructor(object: IRenderableObject) {
-    let attrs = ''
-    if (object.attributes !== undefined) {
-      const entries = Object.entries(object.attributes)
-      if (entries.length > 0) {
-        attrs = ' ' + entries.map(([key, value]) => `${key}="${value as string}"`).join(' ')
-      }
-    }
-    this.tagParts.opening = `<${object.name}${attrs}>`
-    this.tagParts.middle = Tag.singleTags.includes(object.name) || object.content === undefined ? '' : typeof object.content == 'string' ? object.content : object.content.map(e => new Tag(e).toString()).join('')
-    this.tagParts.closing = !Tag.singleTags.includes(object.name) ? `</${object.name}>` : ''
-  }
+  constructor(private obj: IRenderableObject) {}
 
-  public toString() {
-    return this.tagParts.opening + this.tagParts.middle + this.tagParts.closing
+  public toString(): string {
+    const attrs = this.obj.attributes === undefined ? '' : ' ' + Object.entries(this.obj.attributes).map(([key, value]) => `${key}="${value as string}"`).join(' ')
+    return `<${`${this.obj.name}${attrs}`.trim()}>`
+      + (Tag.singleTags.includes(this.obj.name) || this.obj.content === undefined ? '' : typeof this.obj.content == 'string' ? this.obj.content : this.obj.content.map(e => new Tag(e).toString()).join(''))
+      + (!Tag.singleTags.includes(this.obj.name) ? `</${this.obj.name}>` : '')
   }
 }

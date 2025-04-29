@@ -12,12 +12,6 @@ export interface ITextareaAttributes extends Record<string, string | number | un
   as?: 'textarea'
 }
 
-export interface ITextareaOutputAttributes extends Record<string, string | number> {
-  rows: number
-  cols: number
-  name: string
-}
-
 export interface IRenderableObject {
   name: string
   attributes?: Record<string, string | number>
