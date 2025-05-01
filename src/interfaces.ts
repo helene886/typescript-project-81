@@ -17,3 +17,8 @@ export interface IRenderableObject {
   attributes?: Record<string, string | number>
   content?: string | IRenderableObject[]
 }
+
+export interface FormOptions extends Record<string, string | undefined> {
+  action?: string
+  method?: string
+}

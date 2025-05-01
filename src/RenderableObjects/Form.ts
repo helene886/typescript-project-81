@@ -1,4 +1,4 @@
-import { IInputAttributes, IRenderableObject, ITextareaAttributes } from '../interfaces'
+import { IInputAttributes, IRenderableObject, ITextareaAttributes, FormOptions } from '../interfaces'
 import { InputGenerator } from '../InputGenerator'
 
 export class Form implements IRenderableObject {
@@ -6,10 +6,10 @@ export class Form implements IRenderableObject {
   public attributes?: Record<string, string | number> | undefined
   public content?: string | IRenderableObject[] | undefined
 
-  constructor(private template: Record<string, string>, action: Record<string, string>) {
-    const entries = Object.entries(action)
+  constructor(private template: Record<string, string>, options: FormOptions) {
+    const entries = Object.entries(options)
     const attributes: Record<string, string> = { method: 'post' }
-    attributes.action = entries.length > 0 && !(entries.length == 1 && action.method == 'post') ? entries[0][1] : '#'
+    attributes.action = entries.length > 0 && !(entries.length == 1 && options.method == 'post') && entries[0][1] !== undefined ? entries[0][1] : '#'
 
     this.name = 'form'
     this.attributes = attributes

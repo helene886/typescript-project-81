@@ -1,14 +1,12 @@
-import { IRenderableObject } from './interfaces'
-
 export class Tag {
   private static singleTags = ['img', 'br', 'input']
 
-  constructor(private obj: IRenderableObject) {}
+  constructor(private name: string, private attributes?: Record<string, string | number>, private content?: string) {}
 
   public toString(): string {
-    const attrs = this.obj.attributes === undefined ? '' : ' ' + Object.entries(this.obj.attributes).map(([key, value]) => `${key}="${value as string}"`).join(' ')
-    return `<${`${this.obj.name}${attrs}`.trim()}>`
-      + (Tag.singleTags.includes(this.obj.name) || this.obj.content === undefined ? '' : typeof this.obj.content == 'string' ? this.obj.content : this.obj.content.map(e => new Tag(e).toString()).join(''))
-      + (!Tag.singleTags.includes(this.obj.name) ? `</${this.obj.name}>` : '')
+    const attrs = this.attributes === undefined ? '' : ' ' + Object.entries(this.attributes).map(([key, value]) => `${key}="${value as string}"`).join(' ')
+    return `<${`${this.name}${attrs}`.trim()}>`
+      + (Tag.singleTags.includes(this.name) || this.content === undefined ? '' : this.content)
+      + (!Tag.singleTags.includes(this.name) ? `</${this.name}>` : '')
   }
 }
